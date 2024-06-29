@@ -4,6 +4,7 @@ from sqlalchemy.sql import func
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    expense_name = db.Column(db.String(150))
     expected_expense = db.Column(db.Float)
     actual_expense = db.Column(db.Float)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
@@ -11,6 +12,7 @@ class Expense(db.Model):
 
 class Income(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    income_name = db.Column(db.String(150))
     expected_income = db.Column(db.Float)
     actual_income = db.Column(db.Float)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
