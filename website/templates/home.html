@@ -3,58 +3,54 @@
 
 {% block content%}
 
-<table id="incomeTable" border="1">
+<style>
+    #incomeTable th, #incomeTable td {
+        padding: 10px;
+    }
+    #tableContainer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    #incomeTable {
+        width: 80%;
+        margin: 20px 0;
+    }
+</style>
+
+<div id="tableContainer">
+<table class="tabel table-bordered" id="incomeTable">
     <thead>
         <tr>
-            <th>Income Name</th>
-            <th>Expected Amount</th>
-            <th>Actual Amount</th>
-            <th>Action</th>
+            <th class="bg-success">Income Name</th>
+            <th class="bg-success">Expected Amount</th>
+            <th class="bg-success">Actual Amount</th>
+            <th class="bg-success">Action</th>
         </tr>
     </thead>
+
     <tbody>
-        <!-- Rows will be added here dynamically -->
+        {% for income in Income %}
+        <tr>
+            <td>{{ income.name }}</td>
+            <td>{{ income.expected_amount }}</td>
+            <td>{{ income.actual_amount }}</td>
+            <td><button type="button">Delete</button></td>
+        </tr>
+        {% endfor %}
     </tbody>
+        
     <tfoot>
         <tr>
-            <td><input type="text" id="incomeName" placeholder="Income Name" required></td>
-            <td><input type="number" id="expectedAmount" placeholder="Expected Amount" required></td>
-            <td><input type="number" id="actualAmount" placeholder="Actual Amount" required></td>
-            <td><button type="button" onclick="addIncome()">Add Income</button></td>
+            <form method="POST">
+                <td class="bg-success"><input type="text" id="incomeName" name="incomeName" required></td>
+                <td class="bg-success"><input type="number" id="expectedIncome" name="expectedIncome" required></td>
+                <td class="bg-success"><input type="number" id="actualIncome" name="actualIncome" required></td>
+                <td class="bg-success"><button type="submit" class="btn btn-primary">Add Income</button></td>
+            </form>
         </tr>
     </tfoot>
 </table>
-
-<script>
-function addIncome() {
-    // Get values from the form inputs in the last row
-    const incomeName = document.getElementById('incomeName').value;
-    const expectedAmount = document.getElementById('expectedAmount').value;
-    const actualAmount = document.getElementById('actualAmount').value;
-
-    // Get the table body
-    const tableBody = document.getElementById('incomeTable').getElementsByTagName('tbody')[0];
-
-    // Create a new row
-    const newRow = tableBody.insertRow();
-
-    // Insert cells in the new row
-    const cell1 = newRow.insertCell(0);
-    const cell2 = newRow.insertCell(1);
-    const cell3 = newRow.insertCell(2);
-    const cell4 = newRow.insertCell(3);
-
-    // Add data to the cells
-    cell1.innerHTML = incomeName;
-    cell2.innerHTML = expectedAmount;
-    cell3.innerHTML = actualAmount;
-    cell4.innerHTML = '<button type="button">Delete</button>';
-
-    // Clear the form fields
-    document.getElementById('incomeName').value = '';
-    document.getElementById('expectedAmount').value = '';
-    document.getElementById('actualAmount').value = '';
-}
-</script>
+</div>
 
 {% endblock %}
