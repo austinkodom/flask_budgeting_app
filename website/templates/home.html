@@ -19,7 +19,7 @@
 </style>
 
 <div id="tableContainer">
-<table class="tabel table-bordered" id="incomeTable">
+<table class="table table-bordered" id="incomeTable">
     <thead>
         <tr>
             <th class="bg-success">Income Name</th>
@@ -30,12 +30,12 @@
     </thead>
 
     <tbody>
-        {% for income in Income %}
+        {% for income in user.incomes %}
         <tr>
-            <td>{{ income.name }}</td>
-            <td>{{ income.expected_amount }}</td>
-            <td>{{ income.actual_amount }}</td>
-            <td><button type="button">Delete</button></td>
+            <td class="bg-success">{{ income.income_name }}</td>
+            <td class="bg-success">{{ income.expected_income }}</td>
+            <td class="bg-success">{{ income.actual_income }}</td>
+            <td class="bg-success"><button type="button">Delete</button></td>
         </tr>
         {% endfor %}
     </tbody>
