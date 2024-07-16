@@ -16,6 +16,13 @@
         width: 80%;
         margin: 20px 0;
     }
+    #expenseTable th, #expenseTable td {
+        padding: 10px;
+    }
+    #expenseTable {
+        width: 80%;
+        margin: 20px 0;
+    }
 </style>
 
 <div id="tableContainer">
@@ -35,7 +42,8 @@
             <td class="bg-success">{{ income.income_name }}</td>
             <td class="bg-success">{{ income.expected_income }}</td>
             <td class="bg-success">{{ income.actual_income }}</td>
-            <td class="bg-success"><button type="button">Delete</button></td>
+            <td class="bg-success">
+            <button type="button" class="btn btn-danger" onClick="deleteIncome({{ income.id }})">Delete</button></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -52,5 +60,41 @@
     </tfoot>
 </table>
 </div>
+
+<div id="tableContainer">
+    <table class="table table-bordered" id="expenseTable">
+        <thead>
+            <tr>
+                <th class="bg-success">Expense Name</th>
+                <th class="bg-success">Expected Amount</th>
+                <th class="bg-success">Actual Amount</th>
+                <th class="bg-success">Action</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            {% for expense in user.expenses %}
+            <tr>
+                <td class="bg-success">{{ expense.expense_name }}</td>
+                <td class="bg-success">{{ expense.expected_expense }}</td>
+                <td class="bg-success">{{ expense.actual_expense }}</td>
+                <td class="bg-success">
+                <button type="button" class="btn btn-danger" onClick="deleteExpense({{ expense.id }})">Delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+            
+        <tfoot>
+            <tr>
+                <form method="POST">
+                    <td class="bg-success"><input type="text" id="expenseName" name="expenseName" required></td>
+                    <td class="bg-success"><input type="number" id="expectedExpense" name="expectedExpense" required></td>
+                    <td class="bg-success"><input type="number" id="actualExpense" name="actualExpense" required></td>
+                    <td class="bg-success"><button type="submit" class="btn btn-primary">Add Expense</button></td>
+                </form>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
 
 {% endblock %}
