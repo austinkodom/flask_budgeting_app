@@ -16,7 +16,7 @@ def home():
         if 'incomeName' in request.form:
             addIncome()
         
-    return render_template("home.html", user=current_user)
+    return render_template("home.html", user=current_user, total_income=get_total_income())
 
 @views.route('/delete-income', methods=['POST'])
 def delete_income():
@@ -87,3 +87,8 @@ def addExpense():
         db.session.commit()
 
         flash('Expense successfully added.', category='success')
+
+def get_total_income():
+    incomes = Income.query.with_entities(Income.expected_income).all()
+    total_income = sum(income.expected_income for income in incomes)
+    return total_income
