@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 
-{% block content%}
+{% block content %}
 
 <style>
     #incomeTable th, #incomeTable td {
@@ -62,6 +62,14 @@
     </thead>
 
     <tbody>
+            <tr>
+                <form method="POST">
+                    <td class="bg-success"><input type="text" id="incomeName" name="incomeName" required></td>
+                    <td class="bg-success"><input type="number" id="expectedIncome" name="expectedIncome" required></td>
+                    <td class="bg-success"><input type="number" id="actualIncome" name="actualIncome" required></td>
+                    <td class="bg-success"><button type="submit" class="btn btn-primary">Add Income</button></td>
+                </form>
+            </tr>
         {% for income in user.incomes %}
         <tr>
             <td class="bg-success">{{ income.income_name }}</td>
@@ -72,17 +80,6 @@
         </tr>
         {% endfor %}
     </tbody>
-        
-    <tfoot>
-        <tr>
-            <form method="POST">
-                <td class="bg-success"><input type="text" id="incomeName" name="incomeName" required></td>
-                <td class="bg-success"><input type="number" id="expectedIncome" name="expectedIncome" required></td>
-                <td class="bg-success"><input type="number" id="actualIncome" name="actualIncome" required></td>
-                <td class="bg-success"><button type="submit" class="btn btn-primary">Add Income</button></td>
-            </form>
-        </tr>
-    </tfoot>
 </table>
 </div>
 
@@ -96,7 +93,14 @@
                 <th class="bg-success">Action</th>
             </tr>
         </thead>
-    
+        <tr>
+            <form method="POST">
+                <td class="bg-success"><input type="text" id="expenseName" name="expenseName" required></td>
+                <td class="bg-success"><input type="number" id="expectedExpense" name="expectedExpense" required></td>
+                <td class="bg-success"><input type="number" id="actualExpense" name="actualExpense" required></td>
+                <td class="bg-success"><button type="submit" class="btn btn-primary">Add Expense</button></td>
+            </form>
+        </tr>
         <tbody>
             {% for expense in user.expenses %}
             <tr>
@@ -104,21 +108,11 @@
                 <td class="bg-success">{{ expense.expected_expense }}</td>
                 <td class="bg-success">{{ expense.actual_expense }}</td>
                 <td class="bg-success">
-                <button type="button" class="btn btn-danger" onClick="deleteExpense({{ expense.id }})">Delete</button></td>
+                    <button type="button" class="btn btn-danger" onClick="deleteExpense({{ expense.id }})">Delete</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
-            
-        <tfoot>
-            <tr>
-                <form method="POST">
-                    <td class="bg-success"><input type="text" id="expenseName" name="expenseName" required></td>
-                    <td class="bg-success"><input type="number" id="expectedExpense" name="expectedExpense" required></td>
-                    <td class="bg-success"><input type="number" id="actualExpense" name="actualExpense" required></td>
-                    <td class="bg-success"><button type="submit" class="btn btn-primary">Add Expense</button></td>
-                </form>
-            </tr>
-        </tfoot>
     </table>
-    </div>
+</div>
 {% endblock %}
