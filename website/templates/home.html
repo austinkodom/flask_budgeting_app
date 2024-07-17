@@ -23,7 +23,32 @@
         width: 80%;
         margin: 20px 0;
     }
+    #budgetTable
+    {
+        width: 80%;
+        margin: 20px 0;
+    }
 </style>
+
+<div id="tableContainer">
+    <table class="table table-bordered" id="budgetTable">
+        <thead>
+            <tr>
+                <th class="bg-primary">Monthly Budget Amount</th>
+                <th class="bg-primary">Money Left to Budget</th>
+                <th class="bg-primary">Actual Spent</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td class="bg-primary">{{ total_income }}</td>
+                <td class="bg-primary"></td>
+                <td class="bg-primary"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <div id="tableContainer">
 <table class="table table-bordered" id="incomeTable">
@@ -96,23 +121,4 @@
         </tfoot>
     </table>
     </div>
-
-    <div id="tableContainer">
-        <table class="table table-bordered" id="budgetTable">
-            <thead>
-                <tr>
-                    <th>Monthly Budget Amount</th>
-                    <th>Money Left to Budget</th>
-                    <th>Actual Spent</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>{{ total_income }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
 {% endblock %}
