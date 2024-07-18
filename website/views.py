@@ -16,7 +16,11 @@ def home():
         if 'incomeName' in request.form:
             addIncome()
         
-    return render_template("home.html", user=current_user, total_income=get_total_income())
+    return render_template(
+        "home.html", 
+        user=current_user, 
+        total_income=get_total_income(),
+        remaining_to_budget=get_remaining_to_budget())
 
 @views.route('/delete-income', methods=['POST'])
 def delete_income():
@@ -92,3 +96,14 @@ def get_total_income():
     incomes = Income.query.with_entities(Income.expected_income).all()
     total_income = sum(income.expected_income for income in incomes)
     return total_income
+
+def get_total_expenses():
+    expenses = Expense.query.with_entities(Expense.expected_expense).all()
+    total_expenses = sum(expense.expected_expense for expense in expenses)
+    return total_expenses
+
+def get_remaining_to_budget():
+    total_income = get_total_income()
+    total_expenses = get_total_expenses()
+    remaining_to_budget = total_income - total_expenses
+    return remaining_to_budget
