@@ -34,17 +34,19 @@
     <table class="table table-bordered" id="budgetTable">
         <thead>
             <tr>
-                <th class="bg-primary">Monthly Budget Amount</th>
-                <th class="bg-primary">Money Left to Budget</th>
-                <th class="bg-primary">Actual Spent</th>
+                <th class="bg-info">Monthly Budget Amount</th>
+                <th class="bg-info">Money Left to Budget</th>
+                <th class="bg-info">Actual Spent</th>
+                <th class="bg-info">Difference</th>
             </tr>
         </thead>
 
         <tbody>
             <tr>
-                <td class="bg-primary">{{ total_income }}</td>
-                <td class="bg-primary">{{ remaining_to_budget }}</td>
-                <td class="bg-primary"></td>
+                <td class="bg-info">{{ total_income }}</td>
+                <td class="bg-info">{{ remaining_to_budget }}</td>
+                <td class="bg-info">{{ actual_spent }}</td>
+                <td class="bg-info">{{ difference }}</td>
             </tr>
         </tbody>
     </table>
