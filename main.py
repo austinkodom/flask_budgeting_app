@@ -1,6 +1,13 @@
 from website import create_app
+from waitress import serve
 
 app = create_app()
+mode = 'prod'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    if mode == 'dev':
+        # Testing Environment
+        app.run(host='0.0.0.0', port='50100', debug=True)
+    else:
+        # Production Environment
+        serve(app, host='0.0.0.0', port='50100', threads=2, url_prefix='/my_budget')
