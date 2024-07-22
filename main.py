@@ -2,7 +2,7 @@ from website import create_app
 from waitress import serve
 
 app = create_app()
-mode = 'prod'
+mode = 'dev'
 
 if __name__ == '__main__':
     if mode == 'dev':
