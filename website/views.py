@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Income
 from .models import Expense
@@ -6,6 +6,15 @@ from . import db
 import json
 
 views = Blueprint('views', __name__)
+
+@views.route('/update_expense/<int:expense_id>', methods=['POST'])
+def update_expense(expense_id):
+    actual_expense = request.form.get('actualExpense')
+    expense = Expense.query.get(expense_id)
+    if expense:
+        expense.actual_expense = actual_expense
+        db.session.commit()
+    return redirect(url_for('views.home'))
 
 @views.route('/', methods=['GET', 'POST'])
 @login_required

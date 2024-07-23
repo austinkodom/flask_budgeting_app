@@ -11,6 +11,7 @@
     }
     #incomeTable th, #incomeTable td {
         padding: 10px;
+        width: calc(100% / 4);
     }
     #tableContainer {
         display: flex;
@@ -25,6 +26,7 @@
     }
     #expenseTable th, #expenseTable td {
         padding: 10px;
+        width: calc(100% /4);
     }
     #expenseTable {
         margin: 20px 0;
@@ -34,7 +36,11 @@
         margin: 20px 0;
     }
     #budgetTable th, #budgetTable td {
-        padding: 10px;
+        padding: 5px;
+        width: calc(100% / 4);
+    }
+    .input-group, .input-group input, .input-group button {
+        margin-bottom: 0 !important;
     }
 </style>
 
@@ -133,7 +139,14 @@
             <tr>
                 <td class="bg-success">{{ expense.expense_name }}</td>
                 <td class="bg-success">{{ expense.expected_expense }}</td>
-                <td class="bg-success">{{ expense.actual_expense }}</td>
+                <td class="bg-success">
+                    <form id="form-{{ expense.id }}" method="POST">
+                        <div class="input-group">
+                            <input type="number" class="form-control" name="actualExpense" value="{{ expense.actual_expense }}" aria-describedby="button-addon2" required>
+                            <button class="btn btn-warning" type="button" id="button-addon2" onClick="updateExpense({{ expense.id }})">Edit</button>
+                        </div>
+                    </form>
+                </td>
                 <td class="bg-success">
                     <button type="button" class="btn btn-danger btn-sm btn-custom" onClick="deleteExpense({{ expense.id }})">Delete</button>
                 </td>

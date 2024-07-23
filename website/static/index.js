@@ -17,3 +17,9 @@ function deleteExpense(expenseId)
         window.location.href = "/";
     });
 }
+
+function updateExpense(expenseId) {
+    const form = document.getElementById('form-' + expenseId);
+    form.action = `/update_expense/${expenseId}`;
+    form.submit();
+}
