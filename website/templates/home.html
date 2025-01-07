@@ -98,7 +98,14 @@
         <tr>
             <td class="bg-success">{{ income.income_name }}</td>
             <td class="bg-success">{{ income.expected_income }}</td>
-            <td class="bg-success">{{ income.actual_income }}</td>
+            <td class="bg-success">
+            	<form id="form-{{ income.id }}" method="POST">
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="actualIncome" value="{{ income.actual_income }}" aria-describedby="button-addon2" required>
+                    	<button class="btn btn-warning" type="button" id="button-addon2" onClick="updateIncome({{ income.id }})">Edit</button>
+                   </div>
+                </form>
+	        </td>
             <td class="bg-success">
                 <button type="button" class="btn btn-danger btn-sm btn-custom" onClick="deleteIncome({{ income.id }})">Delete</button>
             </td>
