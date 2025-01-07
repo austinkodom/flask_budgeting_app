@@ -1,7 +1,7 @@
 from website import create_app
 
 app = create_app()
-mode = 'dev'
+mode = 'prod'
 
 if __name__ == '__main__':
     if mode == 'dev':
