@@ -1,9 +1,11 @@
+<<<<<<< HEAD
 # Python-specific ignores
 *.pyc
 *.pyo
 *.pyd
 __pycache__/
 *.pkl
+*~
 
 # Virtual environment
 venv/
@@ -53,3 +55,23 @@ coverage.xml
 
 # Pytest cache
 .pytest_cache/
+=======
+instance/*.sqlite3
+instance/*.db
+
+__pycache__/
+*.py[cod]
+
+venv/
+.env/
+
+*.log
+
+.DS_Store
+Thumbs.db
+
+.env
+
+/static/
+/media/
+>>>>>>> 4d3ead94ca011150d881d74b9d146e1faff44738

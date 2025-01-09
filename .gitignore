@@ -1,10 +1,10 @@
-<<<<<<< HEAD
 # Python-specific ignores
 *.pyc
 *.pyo
 *.pyd
 __pycache__/
 *.pkl
+*~
 
 # Virtual environment
 venv/

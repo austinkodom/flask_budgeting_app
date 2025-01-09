@@ -25,3 +25,23 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     expenses = db.relationship('Expense')
     incomes = db.relationship('Income')
+
+    # Return the total budgetable income.
+    def get_total_income(self):
+        return sum(income.expected_income for income in self.incomes)
+    
+    # Return the total expenses.
+    def get_total_expenses(self):
+        return sum(expense.expected_expense for expense in self.expenses)
+    
+    # Return the remaining to budget.
+    def get_remaining_to_budget(self):
+        return self.get_total_income() - self.get_total_expenses()
+    
+    # Return the total actual spent.
+    def get_actual_spent(self):
+        return sum(expense.actual_expense for expense in self.expenses)
+    
+    # Return the difference in income and spent.
+    def get_difference(self):
+        return self.get_total_expenses() - self.get_actual_spent()

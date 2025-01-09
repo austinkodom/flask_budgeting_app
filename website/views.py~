@@ -39,11 +39,11 @@ def home():
     return render_template(
         "home.html", 
         user=current_user, 
-        total_income=get_total_income(),
-        remaining_to_budget=get_remaining_to_budget(),
-        actual_spent=get_actual_spent(),
-        difference=get_difference()
-        )
+        total_income=current_user.get_total_income(),
+        remaining_to_budget=current_user.get_remaining_to_budget(),
+        actual_spent=current_user.get_actual_spent(),
+        difference=current_user.get_difference()
+    )
 
 @views.route('/delete-income', methods=['POST'])
 def delete_income():
@@ -114,30 +114,3 @@ def addExpense():
         db.session.commit()
 
         flash('Expense successfully added.', category='success')
-
-def get_total_income():
-    incomes = Income.query.with_entities(Income.expected_income).all()
-    total_income = sum(income.expected_income for income in incomes)
-    return total_income
-
-def get_total_expenses():
-    expenses = Expense.query.with_entities(Expense.expected_expense).all()
-    total_expenses = sum(expense.expected_expense for expense in expenses)
-    return total_expenses
-
-def get_remaining_to_budget():
-    total_income = get_total_income()
-    total_expenses = get_total_expenses()
-    remaining_to_budget = total_income - total_expenses
-    return remaining_to_budget
-
-def get_actual_spent():
-    actual_expenses = Expense.query.with_entities(Expense.actual_expense).all()
-    total_actual_expenses = sum(expense.actual_expense for expense in actual_expenses)
-    return total_actual_expenses
-
-def get_difference():
-    total_expenses = get_total_expenses()
-    actual_spent = get_actual_spent()
-    difference = total_expenses - actual_spent
-    return difference
