@@ -4,9 +4,9 @@ from sqlalchemy.sql import func
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    expense_name = db.Column(db.String(150))
-    expected_expense = db.Column(db.Float)
-    actual_expense = db.Column(db.Float)
+    expense_name = db.Column(db.String(150), nullable=False)
+    expected_expense = db.Column(db.Float, nullable=False)
+    actual_expense = db.Column(db.Float, nullable=False, default=0.0)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
@@ -32,6 +32,8 @@ class User(db.Model, UserMixin):
     
     # Return the total expenses.
     def get_total_expenses(self):
+        print(sum(expense.expected_expense for expense in self.expenses))
+        print(sum(expense.actual_expense for expense in self.expenses))
         return sum(expense.expected_expense for expense in self.expenses)
     
     # Return the remaining to budget.

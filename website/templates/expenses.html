@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Expenses{% endblock %}
 
 {% block content %}
 
@@ -67,10 +67,10 @@
 </div>
 
 <div id="tableContainer">
-<table class="table table-bordered" id="incomeTable">
+<table class="table table-bordered" id="expenseTable">
     <thead>
         <tr>
-            <th class="bg-success">Income Name</th>
+            <th class="bg-success">Expense Name</th>
             <th class="bg-success">Expected Amount</th>
             <th class="bg-success">Actual Amount</th>
             <th class="bg-success">Action</th>
@@ -81,33 +81,33 @@
             <tr>
                 <form method="POST">
                     <td class="bg-success">
-                        <input class="form-control form-control-sm" type="text" id="incomeName" name="incomeName" required>
+                        <input class="form-control form-control-sm" type="text" id="expenseName" name="expenseName" required>
                     </td>
                     <td class="bg-success">
-                        <input class="form-control form-control-sm" type="number" id="expectedIncome" name="expectedIncome" required>
+                        <input class="form-control form-control-sm" type="number" id="expectedExpense" name="expectedExpense" required>
                     </td>
                     <td class="bg-success">
-                        <input class="form-control form-control-sm" type="number" id="actualIncome" name="actualIncome" required>
+                        <input class="form-control form-control-sm" type="number" id="actualExpense" name="actualExpense" required>
                     </td>
                     <td class="bg-success">
-                        <button type="submit" class="btn btn-primary btn-sm btn-custom">Add Income</button>
+                        <button type="submit" class="btn btn-primary btn-sm btn-custom">Add Expense</button>
                     </td>
                 </form>
             </tr>
-        {% for income in user.incomes %}
+        {% for expense in user.expenses %}
         <tr>
-            <td class="bg-success">{{ income.income_name }}</td>
-            <td class="bg-success">{{ income.expected_income }}</td>
+            <td class="bg-success">{{ expense.expense_name }}</td>
+            <td class="bg-success">{{ expense.expected_expense }}</td>
             <td class="bg-success">
-            	<form id="form-{{ income.id }}" method="POST">
+            	<form id="form-{{ expense.id }}" method="POST">
                     <div class="input-group">
-                        <input type="number" class="form-control" name="actualIncome" value="{{ income.actual_income }}" aria-describedby="button-addon2" required>
-                    	<button class="btn btn-warning" type="button" id="button-addon2" onClick="updateIncome({{ income.id }})">Edit</button>
+                        <input type="number" class="form-control" name="actualExpense" value="{{ expense.actual_expense }}" aria-describedby="button-addon2" required>
+                    	<button class="btn btn-warning" type="button" id="button-addon2" onClick="updateExpense({{ expense.id }})">Edit</button>
                    </div>
                 </form>
 	        </td>
             <td class="bg-success">
-                <button type="button" class="btn btn-danger btn-sm btn-custom" onClick="deleteIncome({{ income.id }})">Delete</button>
+                <button type="button" class="btn btn-danger btn-sm btn-custom" onClick="deleteExpense({{ expense.id }})">Delete</button>
             </td>
         </tr>
         {% endfor %}
