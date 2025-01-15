@@ -32,8 +32,6 @@ class User(db.Model, UserMixin):
     
     # Return the total expenses.
     def get_total_expenses(self):
-        print(sum(expense.expected_expense for expense in self.expenses))
-        print(sum(expense.actual_expense for expense in self.expenses))
         return sum(expense.expected_expense for expense in self.expenses)
     
     # Return the remaining to budget.
