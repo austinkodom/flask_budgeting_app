@@ -30,7 +30,7 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          zip -r release.zip . -x "*.git*" "venv/*" ".github/*" "__pycache__/*"
+          zip -r release.zip . -x "*.git*" "venv/*" ".github/*" "__pycache__/*" "*.log" "*.cache/*" "tests/*"
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
