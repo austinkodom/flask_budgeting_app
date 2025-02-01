@@ -62,6 +62,10 @@ def expenses():
         difference=current_user.get_difference()
     )
 
+@views.route('/how-to')
+def how_to_use():
+    return render_template("how_to_use.html", user=current_user)
+
 
 @views.route('/delete-income', methods=['POST'])
 def delete_income():
